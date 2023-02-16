@@ -1,37 +1,25 @@
 const express = require("express");
-const Project = require("../models/projectModels");
+const { postProject, getALLPRoject, getSingleProject, deleteProject, updateProject } = require("../controllers/projectController");
+
 
 //router
 const router = express.Router();
 //routes
-router.get("/", (req, res) => {
-  res.json({ message: "GET ALL PROJECTS" });
-});
+router.get("/", getALLPRoject);
+
+
 //GET a single project
-router.get("/:id", (req, res) => {
-  res.json({ message: "GET a single project" });
-});
+router.get("/:id", getSingleProject);
+
+
 //post
-router.post("/", async (req, res) => {
-  const data = req.body;
-  try {
-    const project = await Project.create({
-      ...data,
-    });
-    res.status(200).json(project);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+router.post("/", postProject);
+
 
 //delete
-router.delete("/:id", (req, res) => {
-  res.json({ message: "DELETE a PROJECTS" });
-});
+router.delete("/:id",deleteProject);
 //update
 
-router.patch("/:id", (req, res) => {
-  res.json({ message: "PATCh a PROJECTS" });
-});
+router.patch("/:id",updateProject);
 
 module.exports = router;
