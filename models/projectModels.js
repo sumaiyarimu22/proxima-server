@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // Object data modeling laibary (db)
 
 const Schema = mongoose.Schema;
 
